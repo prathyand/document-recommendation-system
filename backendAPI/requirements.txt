@@ -1,0 +1,11 @@
+pip==22.1.2
+setuptools==62.6.0
+wheel==0.37.1
+django~=4.0.5
+pymysql
+mysqlclient==2.1.1
+djangorestframework
+django-cors-headers
+django-environ
+sqlparse~=0.4.2
+asgiref~=3.5.2

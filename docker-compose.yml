@@ -1,0 +1,105 @@
+
+services:
+  zoteroapiservice:
+    build:
+      context: ./zoteroapiserv
+    container_name: zeteroservice
+    env_file:
+      - ./zoteroapiserv/app/.env
+    ports:
+      - 8088:8088
+    depends_on:
+      mysqlrecomdb:
+        condition: service_healthy
+    networks:
+      - backend1
+    volumes:
+      - ./zoteroapiserv/app:/app
+  
+  recengineservice:
+    build:
+      context: ./RECservice
+    container_name: recengineservice
+    hostname: recengineservice
+    env_file:
+      - ./RECservice/app/.env
+    ports:
+      - 2660:2660
+      - 8002:8002
+    depends_on:
+      mysqlrecomdb:
+        condition: service_healthy
+      zoteroapiservice:
+        condition: service_completed_successfully
+    networks:
+      - backend1
+      - frontend1
+    volumes:
+      - ./RECservice/app:/app
+
+
+  mysqlrecomdb:
+    image: mysql:latest
+    container_name: RD_mysqlrecom
+    hostname: RD_mysqlrecom
+    cap_add:
+      - SYS_NICE
+    restart: always
+    env_file:
+      - ./mysqlREC/.env
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysqlrecommendationdata:/var/lib/mysql
+      - ./mysqlREC/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-u$$MYSQL_USER", "-p$$MYSQL_PASSWORD",  "ping", "-h", "localhost"]
+      interval: 2s
+      timeout: 3s
+      retries: 5
+    networks:
+      - frontend1
+      - backend1
+
+  recomapiservice:
+    build:
+      context: ./backendAPI
+    container_name: recomapiservicepermission
+    hostname: recomapiservice
+    ports:
+      - 8001:8001
+    depends_on:
+      mysqlrecomdb:
+        condition: service_healthy
+
+    volumes:
+      - ./backendAPI/backedAPI:/backedAPI
+    networks:
+      - frontend1
+      - backend1
+    command: python manage.py runserver 0.0.0.0:8001
+
+  webappservice:
+    build:
+      context: ./RD_webapp
+    stdin_open: true
+    container_name: rdwebapp
+    hostname: rdwebapp
+    ports:
+      - 3000:3000
+    depends_on:
+      - recomapiservice
+    volumes:
+      - ./RD_webapp/src:/app/src
+      - ./RD_webapp/public:/app/public
+    networks:
+      - frontend1
+
+networks:
+  backend1:
+    driver: bridge
+  frontend1:
+    driver: bridge
+volumes:
+  mysqlrecommendationdata:
+    driver: local

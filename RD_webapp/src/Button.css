@@ -1,0 +1,58 @@
+.custom-button{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 2px 2px 6px grey;
+    transition: .25s;
+    overflow: hidden;
+    position: relative;
+    }
+    .custom-button:after {
+    content: "";
+    background: lightgray;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+    }
+    .custom-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+    }
+    /* Button Colors */
+    .blue{
+    background-color: #4885ed;
+    }
+    .green{
+    background-color: #3cba54;
+    }
+    .red{
+    background-color: #db3236;
+    }
+    /* Button Effects */
+    .button-container button.custom-button.blue:hover{
+    cursor: pointer;
+    background-color: #2b5294;
+    box-shadow: 2px 2px 20px grey;
+    }
+    .button-container button.custom-button.green:hover{
+    cursor: pointer;
+    background-color: #298039;
+    box-shadow: 2px 2px 20px grey;
+    }
+    .button-container button.custom-button.red:hover{
+    cursor: pointer;
+    background-color: #9e2427;
+    box-shadow: 2px 2px 20px grey;
+    }

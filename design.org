@@ -1,0 +1,86 @@
+#+TITLE:Research Dashboard Design Document 
+
+* Brief Description
+- Recommendation engine and spaced repetition system for research ideas
+- Modern Zettelkasten
+- Continuous feed ala modern websites
+- Feedback driven to maximize attention/engagement (based on manual scoring and context)
+
+
+* Back-end 
+- Fetch and parse multiple data feeds
+- Prepare items for display
+- Combination of "streaming" and ranking pipeline 
+- Ranking and recommendation engine
+- Update databases based on user activity 
+
+* Front-end 
+- Simple 
+- Either one "frame" per feed-type or one single feed
+- Want to be able to reconfigure the view easily. Avoid overly complex js frameworks if possible?
+
+
+* Data Ingestion Sources 
+1. Zotero for papers and notes associated with them (SQL, Zotero API)
+2. Git repositories (papers, latex, org-mode, etc.)
+3. Emacs org-mode. Loosely formatted with tags, links, dates, etc. 
+4. Google scholar recommendations
+5. Conference proceedings (FaCCt, ACM DL, USENIX, etc.)
+6. Similar papers based on references, citations, text, keywords 
+7. RSS feeds? 
+
+* Plan/Milestones 
+0. Setup devel and testing environment [1 week] 
+1. Reasonably robust methods for fetching and parsing a few data sources [2 weeks]
+2. Recommendation engine v1. Can start with some very simple heuristics [1 week] 
+3. Web UI v1 [1 week] 
+4. More data sources if necessary v2 [1 week]
+5. Web UI v2.  [2 weeks]
+6. Recommendation engine using user activity and feedback v2. [2 weeks]
+
+
+* Implementation 
+- Backend must be inside docker containers, for easy dependency tracking and portability
+- Frequent updates to git
+- Focus on backend first (a few different data feeds). 
+- Get a quick minimum working implementation 
+- Front-end can be exceedingly simple initially. 
+- Avoid hard-coded paths/API keys.
+- Minimize use of complex APIs. Direct git vs. github. Zotero SQLite  vs. its own API, etc.
+
+* References 
+- https://www.zotero.org/support/dev/web_api/v3/basics 
+- ACM RecSys conference https://recsys.acm.org/recsys21 
+- 
+
+* Related Work 
+- Andy Matuschak and Michael Nielsen: Atomic notes and Orbit spaced repetition system
+- Anki 
+- https://github.com/oxidecomputer/cio ingestors and chat-bots etc in rust! 
+
+* Work Logistics 
+- 20--30 hrs/week?
+- Expect regular progress and updates
+- Will be involved in design and architecture if needed.
+- But should take initiative
+- Segue into another time-series project? 
+
+
+* High-level motivation
+- *Doctrine of Total Research*: Work throughout the day in 1/2 hour bursts, whenever sufficient energy/motivation are available.
+- Dashboard comprising of papers/zotero, Zettelkasten, spaced repetition/anki
+  - Google scholar articles
+  - Paper drafts and diffs
+  - Integrate with github, gscholar, zotero DB
+  - Comments stored in zotero? 
+- Single portal with algorithmic 'feed'
+  - Recommendation engine and activity tracking etc
+- Combat internet addictive powers with its own methods and techniques
+- Gentle non-gamified approaches (like paper-based journalling etc) cant compete in the current hostile gamified environment. 
+- Need to fight fire with fire lol. 
+
+* Questions
+- Any ready interactive front-end libraries/toolkits? 
+ - Some "FB clones" that use firebase. 
+- Data storage. Too many choices. Simple kv (leveldb) or some richer documentdb with indexing and more metadata queries etc.
+- 
