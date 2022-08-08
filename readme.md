@@ -1,4 +1,5 @@
-# research-dashboard
+# document-recommendation-system
+A document recommendation system based on a hybrid of content based recommendation algorithm (cosine similarity in user profile embedding and document embeddings) and spaced repetition [SM-2](https://github.com/thyagoluciano/sm2)  algorithm.
 
 ## Requirements:
  ```
