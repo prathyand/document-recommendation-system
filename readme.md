@@ -17,9 +17,9 @@ zoteroapiserv/app/userProfile.json
 **userProfile.json** 
 ```json
 {"ZoteroUserID":"1234567",
-"ZOTERO_API_SECRET_KEY":"aF2cfw18ikd92VpqnQFpAVoY",
+"ZOTERO_API_SECRET_KEY":"aF2cfw18ikd92VpqqQFpAVoY",
 "git_repository_list":["prathyand/samplerepo","prathyand/floorplan_obfuscation"],
-"gitAuthenticationToken":"ghp_foEuMidWdbm3nzPaSvrxWNGeNHcVfY0KSJbC",
+"gitAuthenticationToken":"ghp_foEuMidWdbm6nzPaSvrxWNGeNHcVfY0KSJbC",
 "arxiv_subscribed_topics":["cs.CV","cs.DC","cs.AI","cs.LG"],
 "arxiv_fetchNewItemsLimit":20
 }
