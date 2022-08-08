@@ -8,7 +8,7 @@ latest version of docker/docker compose
 
 1. Clone the repository
  ```
-git clone git@github.iu.edu:prateeks/research-dashboard.git
+git clone https://github.com/prathyand/document-recommendation-system.git
 ```
 2. Configure user preferences in:
 ```
