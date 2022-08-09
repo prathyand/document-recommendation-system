@@ -45,6 +45,34 @@ docker compose up
 
 ---------------------------
 ## sm2like logic
+more about spaced repetition [SM-2](https://github.com/thyagoluciano/sm2)
+
+```python
+def sm2like(quality,repetitions,previous_interval,previous_ef):
+
+    if quality>=3:
+        if repetitions == 0:
+            interval = 1
+        elif repetitions == 1:
+            interval = 3
+        else:
+            interval = int(round(previous_interval * previous_ef))
+        
+        repetitions+=1
+        easeFactor = previous_ef + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
+
+    else:
+        repetitions = 0
+        interval = 1
+        easeFactor = previous_ef
+
+    if (easeFactor < 1.3):
+        easeFactor = 1.3
+        
+    return (interval,repetitions,easeFactor)
+```
+
+
 ![Input3](images/sm2like_recom.drawio.png?raw=true "smwlike")
 ## Web UI
 
