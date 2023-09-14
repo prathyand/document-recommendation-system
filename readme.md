@@ -1,6 +1,11 @@
 # document-recommendation-system
 A document recommendation system based on a hybrid of content based recommendation algorithm (cosine similarity in user profile embedding and document embeddings) and spaced repetition [SM-2](https://github.com/thyagoluciano/sm2)  algorithm.
 
+## :building_construction: System Architecture
+
+![sysarch](images/doc-recom.drawio.svg?raw=true "sysarch")
+
+
 ## Requirements:
  ```
 latest version of docker/docker compose
@@ -42,6 +47,9 @@ docker compose up
 - **RD_webapp:** Front end ReactJS UI
 
 - **[mysqlREC](mysqlREC/):** MySQL database client
+
+
+
 
 ---------------------------
 ## sm2like logic
